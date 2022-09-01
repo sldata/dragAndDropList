@@ -18,5 +18,28 @@ boxes.forEach(box =>{
         e.preventDefault()
         const isDragged = document.querySelector('.is-dragged')
         box.appendChild(isDragged)
+
+        handlePresents()
     })
 })
+
+
+const handlePresents = () => {
+    const unChosenPresents = presentsBox.querySelectorAll('.present')
+    if(chosenBox.childElementCount > 2){
+        unChosenPresents.forEach(present =>{
+            present.setAttribute('draggable', 'false')
+            present.classList.add('present-disabled')
+        })
+
+        sendBtn.disabled=false
+    }
+    else{
+        unChosenPresents.forEach(present =>{
+            present.setAttribute('draggable', 'true')
+            present.classList.remove('present-disabled')
+        })
+
+        sendBtn.disabled=true
+    }
+}
